@@ -7,16 +7,18 @@ const mongoose = require('mongoose');
 const config = require('./config/database');
 
 //Conect to database
-
+/*
 mongoose.connect(config.database, config.dbOptions).then(function(){
     console.log('Success');
 }, function(err){
     console.log('Error');
 });
-
+*/
 const app = express();
 
 const users = require('./routes/users');
+
+const posts = require('./routes/posts');
 
 //Port number
 const port = 4000;
@@ -35,6 +37,9 @@ require('./config/passport')(passport);
 
 //users
 app.use('/users', users);
+
+//posts
+app.use('/posts', posts);
 
 //Static folder
 app.use(express.static(path.join(__dirname, 'public')));
